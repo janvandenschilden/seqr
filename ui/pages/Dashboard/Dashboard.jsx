@@ -20,6 +20,7 @@ import FilterSelector from './components/FilterSelector'
 import CategoryIndicator from './components/CategoryIndicator'
 import ProjectEllipsisMenu from './components/ProjectEllipsisMenu'
 import { getVisibleProjects } from './selectors'
+import Ideogram from '../../shared/components/graph/Ideogram'
 
 const ProjectTableContainer = styled.div`
   th {
@@ -194,29 +195,34 @@ const getColumns = (googleLoginEnabled, isAnvil, isSuperuser) => {
 }
 
 const ProjectsTable = React.memo(({ visibleProjects, loading, load, user, googleLoginEnabled }) => (
-  <DataLoader content load={load} loading={false}>
-    <ProjectTableContainer>
-      <VerticalSpacer height={10} />
-      <HorizontalSpacer width={10} />
-      <InlineHeader size="medium" content="Projects:" />
-      <FilterSelector />
-      <VerticalSpacer height={10} />
-      <DataTable
-        striped
-        stackable
-        fixed
-        idField="projectGuid"
-        defaultSortColumn="name"
-        emptyContent="0 projects found"
-        loading={loading}
-        data={visibleProjects}
-        columns={getColumns(googleLoginEnabled, user.isAnvil, user.isSuperuser)}
-        footer={user.isPm ? <CreateProjectButton /> : null}
-        downloadTableType="Projects"
-        downloadFileName="projects"
-      />
-    </ProjectTableContainer>
-  </DataLoader>
+  <div>
+    <DataLoader content load={load} loading={false}>
+      <ProjectTableContainer>
+        <VerticalSpacer height={10} />
+        <HorizontalSpacer width={10} />
+        <InlineHeader size="medium" content="Projects:" />
+        <FilterSelector />
+        <VerticalSpacer height={10} />
+        <DataTable
+          striped
+          stackable
+          fixed
+          idField="projectGuid"
+          defaultSortColumn="name"
+          emptyContent="0 projects found"
+          loading={loading}
+          data={visibleProjects}
+          columns={getColumns(googleLoginEnabled, user.isAnvil, user.isSuperuser)}
+          footer={user.isPm ? <CreateProjectButton /> : null}
+          downloadTableType="Projects"
+          downloadFileName="projects"
+        />
+      </ProjectTableContainer>
+    </DataLoader>
+    <p>
+      Ideogram placeholder
+    </p>
+  </div>
 ))
 
 ProjectsTable.propTypes = {
