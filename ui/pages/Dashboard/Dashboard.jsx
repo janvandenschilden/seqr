@@ -219,9 +219,7 @@ const ProjectsTable = React.memo(({ visibleProjects, loading, load, user, google
         />
       </ProjectTableContainer>
     </DataLoader>
-    <p>
-      Ideogram placeholder
-    </p>
+    <Ideogram />
   </div>
 ))
 
